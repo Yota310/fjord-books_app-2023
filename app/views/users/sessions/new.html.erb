@@ -1,0 +1,17 @@
+<h2>Log in</h2>
+
+<%= form_with url: '/users/sign_in', scope: :session do |f| %>
+  <div class="my-3">
+    <%= f.label :email, class: 'form-label fw-bold' %>
+    <%= f.text_field :email, class: 'container-fluid' %>
+  </div>
+  <div class="my-3">
+    <%= f.label :password, class: 'form-label fw-bold' %>
+    <%= f.password_field :password, class: 'container-fluid' %>
+  </div>
+  <div class="my-3">
+    <%= f.submit 'ログイン', class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
