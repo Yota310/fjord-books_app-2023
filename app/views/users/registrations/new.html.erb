@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= form_with(model: user)) do |form| %>
+<%= form_with(model: @user) do |form| %>
   <%= render "users/shared/error_messages", resource: resource %>
     <div class="field">
     <%= form.label :name %><br />

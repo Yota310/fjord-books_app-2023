@@ -1,8 +1,11 @@
-<h1>Users#index</h1>
+<h1>ユーザー一覧</h1>
 <% @users.each do |user|%>
 <div>
 <%= render user %>
 <%= link_to t('views.common.show', name: User.model_name.human.downcase), user %>
 <% end %>
 </div>
+<p>
+  <a href="/books">本一覧へ</a>
+</p>
 

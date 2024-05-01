@@ -6,6 +6,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    redirect_to '/books' if current_user
     @user = User.new
   end
 
