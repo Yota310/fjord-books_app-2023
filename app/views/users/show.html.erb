@@ -1,3 +1,11 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= p @user[:name] %>
+<h1><%= @user[:name] %>の詳細ページ</h1>
+
+<div>
+<p>profile:<%= @user[:profile] %></p>
+<p>email:<%= @user[:email] %></p>
+<p>address:<%= @user[:address] %></p>
+<p>postcode:<%= @user[:postcode] %></p>
+<a href="/users/edit"><button>編集</button></a>
+<a href="/users/index"><button>一覧に戻る</button></a>
+
+</div>

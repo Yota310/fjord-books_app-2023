@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     registrations:  'users/registrations', # カンマで区切るのを忘れない！
     sessions:       'users/sessions'
   }
-  resources :books
+  resources :books, :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
