@@ -41,11 +41,23 @@ en:
     create_page_title: 'New book'
     books_page_title: 'Books'
   notice:
-    update_state_text: 'Book was successfully updated.'
-    delete_state_text: 'Book was successfully destroyed.'
-    create_state_text: 'Book was successfully created.'
-  model:
-    title: 'title'
-    memo: 'memo'
-    author: 'author'
-    picture: 'picture'
+    update_state_text: '%{status} was successfully updated.'
+    delete_state_text: '%{status} was successfully destroyed.'
+    create_state_text: '%{status} was successfully created.'
+  books:
+    edit:
+      title: 'Edit book'
+    new:
+      title: 'Create book'
+    index:
+      title: 'Books'
+activerecord:
+    models:
+      book:
+
+    attributes:
+      book:
+        author:
+        memo:
+        picture:
+        title:

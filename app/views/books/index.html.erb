@@ -1,6 +1,6 @@
-<p style="color: green"><%= t flash[:notice] %></p>
+<p style="color: green"><%= notice %></p>
 
-<h1><%= I18n.t('page_title.books_page_title') %></h1>
+<h1><%= t '.title' %></h1>
 <div id="books" class="index-items">
   <% @books.each do |book| %>
   <div class="index-item">
