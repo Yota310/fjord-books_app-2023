@@ -33,7 +33,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label t('password') %> <i><%=(t('.leave'))%></i><br />
+    <%= f.label t('password') %> <i><%= (t('.leave')) %></i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
     <% if @minimum_password_length %>
       <br />
@@ -47,7 +47,7 @@
   </div>
 
   <div class="field">
-    <%= f.label t('current_password') %> <i>(<%=t('current_password')%>)</i><br />
+    <%= f.label t('current_password') %> <i>(<%= t('current_password') %>)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 

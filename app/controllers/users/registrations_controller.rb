@@ -29,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     @user = current_user
-    #アップデートする内容と画面遷移のリダイレクトを追加する
+    # アップデートする内容と画面遷移のリダイレクトを追加する
     respond_to do |format|
       if @user.update(update_users_params)
         format.html { redirect_to "/users/#{@user[:id]}/show", notice: t('controllers.common.notice_update', name: User.model_name.human) }

@@ -20,13 +20,13 @@
     <p class="navbar-text float-right">
     <% if user_signed_in? %>
       <p>
-      <strong><%=t('login.state')%>: <%= current_user.name %></strong>
+      <strong> <%= t('login.state') %>: <%= current_user.name %> </strong>
       <%= link_to t('login.edit'), edit_user_registration_path, class: "navbar-link" %> |
-      <%= link_to t('login.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link"  %>
+      <%= link_to t('login.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "navbar-link" %>
       </p>
     <% else %>
-      <%= link_to t('sign_up'), new_user_registration_path, class: "navbar-link"  %> |
-      <%= link_to t('login.title'), new_user_session_path, class: "navbar-link"  %>
+      <%= link_to t('sign_up'), new_user_registration_path, class: "navbar-link" %> |
+      <%= link_to t('login.title'), new_user_session_path, class: "navbar-link" %>
     <% end %>
     </p>
     <%= yield %>

@@ -2,16 +2,14 @@
 
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
-  def new
-    p "NEWまできた"
-    super
-  end
+  # def new
+  #   super
+  # end
 
   # POST /resource/password
-  def create
-    super
-    p "ここまできた"
-  end
+  # def create
+  #   super
+  # end
 
   # GET /resource/password/edit?reset_password_token=abcdef
   # def edit
