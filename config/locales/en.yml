@@ -233,3 +233,8 @@ en:
       notice_create: "%{name} was successfully created."
       notice_update: "%{name} was successfully updated."
       notice_destroy: "%{name} was successfully destroyed."
+  login:
+    state: "login as"
+    edit: "edit profile"
+    logout: "logout"
+    password: "Password"

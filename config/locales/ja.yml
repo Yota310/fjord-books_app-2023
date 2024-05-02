@@ -205,3 +205,26 @@ ja:
       notice_create: "%{name}が作成されました。"
       notice_update: "%{name}が更新されました。"
       notice_destroy: "%{name}が削除されました。"
+  login:
+    state: 'ログイン中'
+    edit: 'プロフィールを編集'
+    logout: 'ログアウト'
+    title: 'ログイン'
+    forget: 'パスワードをお忘れですか？'
+    confirmation: '確認の指示が来ていませんか？'
+    unlock: 'ロック解除の手順を受け取っていませんか？'
+  users:
+    registrations:
+      title: '新規登録'
+      char_min: "%{num}文字以上"
+      edit:
+        leave: '変更がない場合空白にしてください'
+        title: 'ユーザーを編集'
+        update: '更新'
+        cancel: 'アカウントをキャンセルする'
+        unhappy: '不幸ですか？'
+  password: 'パスワード'     
+  password_confirmation: 'パスワード確認'
+  sign_up: '新規登録'
+  current_password: '元のパスワード'
+  

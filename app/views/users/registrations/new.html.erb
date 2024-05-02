@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2><%= t('.title')%></h2>
 
 <%= form_with(model: @user) do |form| %>
   <%= render "users/shared/error_messages", resource: resource %>
@@ -13,20 +13,20 @@
   </div>
 
   <div class="field">
-    <%= form.label :password %>
+    <%= form.label t('password') %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= t("users.registrations.char_min", num: @minimum_password_length) %>)</em>
     <% end %><br />
     <%= form.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= form.label :password_confirmation %><br />
+    <%= form.label t('password_confirmation') %><br />
     <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Sign up" %>
+    <%= form.submit t('sign_up') %>
   </div>
 <% end %>
 
