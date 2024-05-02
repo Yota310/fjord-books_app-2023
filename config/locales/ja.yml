@@ -226,7 +226,8 @@ ja:
   password: 'パスワード'     
   password_confirmation: 'パスワード確認'
   sign_up: '新規登録'
+  current_password_confirmation: 'パスワードを変更するための確認です'
   current_password: '元のパスワード'
   edit: '編集'
-  
+
   
