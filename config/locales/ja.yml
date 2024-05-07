@@ -27,3 +27,12 @@ ja:
   test:
     Edit this book: "この本を編集する"
     Back to books: "本一覧に戻る"
+  activerecord:
+    models:
+      book: 本
+    attributes:
+      book:
+        author: 著者
+        memo: メモ
+        picture: 写真
+        title: タイトル
