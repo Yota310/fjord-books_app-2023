@@ -36,10 +36,6 @@ en:
     back_to_books_link: 'Back to books'
     delete_book_link: 'destroy this book'
     create_book_link: 'new book'
-  page_title:
-    edit_page_title: 'Editing book'
-    create_page_title: 'New book'
-    books_page_title: 'Books'
   notice:
     update_state_text: '%{status} was successfully updated.'
     delete_state_text: '%{status} was successfully destroyed.'
