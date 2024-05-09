@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @report %>
+
+<nav class="page-nav">
+  <%= link_to t('views.common.back', name: i18n_pluralize(Report.model_name.human.downcase)), reports_path %>
+  <% if current_user.name == @report.user %>
+    | <%= link_to t('views.common.edit', name: Report.model_name.human.downcase), edit_user_registration_path %>
+    <%= button_to "Destroy this report", @report, method: :delete %>
+  <% end %>
+  
+</nav>
+<% p current_user.name %>
+<% p "fdaffffdfdffffsd" %>
+<% p @report %>
