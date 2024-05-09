@@ -10,22 +10,22 @@
 
   <div class="field">
     <%= f.label :profile %><br />
-    <%= f.text_field :profile, autofocus: true, autocomplete: "profile" %>
+    <%= f.text_field :profile, autofocus: false, autocomplete: "profile" %>
   </div>
 
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+    <%= f.text_field :address, autofocus: false, autocomplete: "address" %>
   </div>
 
   <div class="postcode">
     <%= f.label :postcode %><br />
-    <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
+    <%= f.text_field :postcode, autofocus: false, autocomplete: "postcode" %>
   </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: false, autocomplete: "email" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -58,4 +58,4 @@
 
 <div> <%= t('.unhappy') %> <%= button_to t('.cancel'), registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
-<%= link_to t('views.common.back', name: 'ユーザー'), :back %>
+<%= link_to t('views.common.back', name: 'ユーザー'), resource %>

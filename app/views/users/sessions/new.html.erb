@@ -6,7 +6,7 @@
     <%= f.text_field :email, class: 'container-fluid' %>
   </div>
   <div class="my-3">
-    <%= f.label t('password'), class: 'form-label fw-bold' %>
+    <%= f.label User.human_attribute_name("password"), class: 'form-label fw-bold' %>
     <%= f.password_field :password, class: 'container-fluid' %>
   </div>
   <div class="my-3">

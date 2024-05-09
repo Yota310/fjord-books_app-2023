@@ -234,7 +234,7 @@ en:
       notice_update: "%{name} was successfully updated."
       notice_destroy: "%{name} was successfully destroyed."
   login:
-    state: "login as"
-    edit: "edit profile"
-    logout: "logout"
+    state: "Login as"
+    edit: "Edit profile"
+    logout: "Logout"
     password: "Password"

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show]
+  before_action :set_user, only: [:show]
 
   def index
-    @users = User.all
+    @users = User.all.order(:id).page(params[:page]).per(2)
   end
 
   def show; end

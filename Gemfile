@@ -84,10 +84,10 @@ end
 gem 'carrierwave'
 gem 'kaminari'
 
-gem 'devise', '~> 4.9'
+gem 'devise'
 
 group :development do
-  gem 'letter_opener_web', '~> 1.0'
+  gem 'letter_opener_web'
 end
 
 gem 'devise-i18n'

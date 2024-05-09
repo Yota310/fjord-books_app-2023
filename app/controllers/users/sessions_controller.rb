@@ -7,15 +7,15 @@ class Users::SessionsController < Devise::SessionsController
   # def new; end
 
   # POST /users/sign_in
-  def create
-    @user = User.find_by(email: params[:session][:email])
-    if @user.valid_password?(params[:session][:password])
-      sign_in(@user)
-      redirect_to '/books'
-    else
-      render 'new', notice: 'ログインに失敗しました'
-    end
-  end
+  # def create
+    # @user = User.find_by(email: params[:session][:email])
+    # if @user.valid_password?(params[:session][:password])
+    #   sign_in(@user)
+    #   redirect_to '/books'
+    # else
+    #   render 'new', notice: 'ログインに失敗しました'
+    # end
+  # end
 
   # DELETE /resource/sign_out
   # def destroy
