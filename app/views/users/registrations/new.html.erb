@@ -1,4 +1,4 @@
-<h2><%= t('.title') %></h2>
+<h2><%= t('users.registrations.title') %></h2>
 
 <%= form_with(model: @user) do |form| %>
   <%= render "users/shared/error_messages", resource: resource %>
@@ -13,7 +13,7 @@
   </div>
 
   <div class="field">
-    <%= form.label t('password') %>
+    <%= form.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= t("users.registrations.char_min", num: @minimum_password_length) %>)</em>
     <% end %><br />
