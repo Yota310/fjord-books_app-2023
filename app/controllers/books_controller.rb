@@ -9,11 +9,17 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1 or /books/1.json
-  def show; end
+  def show
+    @user = current_user
+    @comment = Comment.new
+    @comments = @book.comments # 表示している本のidを持つコメントを表示
+    set_comment_users
+  end
 
   # GET /books/new
   def new
     @book = Book.new
+    @user = current_user
   end
 
   # GET /books/1/edit
@@ -66,6 +72,17 @@ class BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def book_params
-    params.require(:book).permit(:title, :memo, :author, :picture)
+    params.require(:book).permit(:title, :memo, :author, :picture, :user_id)
+  end
+
+  def set_comment_users
+    @users = @comments.map do |comment|
+      # if User.where("id = #{comment.user_id}")[0]['name'].present?
+      #   User.where("id = #{comment.user_id}")[0]['name']
+      # else
+      #   User.where("id = #{comment.user_id}")[0]['email']
+      # end
+      User.where("id = #{comment.user_id}")[0]
+    end
   end
 end

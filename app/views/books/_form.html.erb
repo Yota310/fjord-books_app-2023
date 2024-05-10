@@ -32,6 +32,10 @@
   </div>
 
   <div>
+      <%= form.hidden_field :user_id, value: @user.id %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
