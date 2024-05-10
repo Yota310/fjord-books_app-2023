@@ -6,6 +6,6 @@
 <p><%= User.human_attribute_name('address') %>: <%= @user.address %></p>
 <p><%= User.human_attribute_name('postcode' ) %>: <%= @user.postcode %></p>
 
-<%= link_to t('views.common.edit', name: 'ユーザー'), edit_user_registration_path %>
-<%= link_to t('views.common.back', name: 'ユーザー'), users_path %>
+<%= link_to t('views.common.edit', name: i18n_pluralize(User.model_name.human)), edit_user_registration_path %>
+<%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human)), users_path %>
 </div>

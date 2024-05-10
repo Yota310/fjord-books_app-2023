@@ -18,4 +18,4 @@
 <nav class="page-nav">
     <%= link_to t('views.common.new', name: Book.model_name.human.downcase), new_book_path %>
 </nav>
-<%= link_to 'ユーザー一覧へ', users_path %>
+<%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human.downcase)), users_path %>
