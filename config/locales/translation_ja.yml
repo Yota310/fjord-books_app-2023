@@ -3,6 +3,8 @@ ja:
     models:
       book: 本
       user: ユーザ
+      comment: コメント
+      report: 日報
 
     attributes:
       book:
@@ -18,3 +20,6 @@ ja:
         avatar: ユーザ画像
       comment:
         comment: コメントする
+      report:
+        title: タイトル
+        content: 日報

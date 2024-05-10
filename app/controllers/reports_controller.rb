@@ -8,6 +8,10 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
+    @user = current_user
+    @comment = Comment.new
+    @comments = @report.comments
+    set_comment_users
   end
 
   # GET /reports/new
@@ -70,7 +74,12 @@ class ReportsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:title, :content, :user).merge(user: current_user.name)
+      params.require(:report).permit(:title, :content, :user_id).merge(user_id: current_user.id)
     end
 
+    def set_comment_users
+      @users = @comments.map do |comment|
+        User.where("id = #{comment.user_id}")[0]
+      end
+    end
 end

@@ -10,9 +10,19 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human) }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def comment_params
-    params.require(:comment).permit(:comment, :book_id, :user_id)
+    params.require(:comment).permit(:comment, :commentable_id, :commentable_type, :user_id)
   end
 end

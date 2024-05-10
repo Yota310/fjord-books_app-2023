@@ -216,3 +216,4 @@ ja:
     registrations:
       edit:
         title: "アカウント編集"
+  submit: "%{name}を投稿"

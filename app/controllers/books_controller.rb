@@ -77,11 +77,6 @@ class BooksController < ApplicationController
 
   def set_comment_users
     @users = @comments.map do |comment|
-      # if User.where("id = #{comment.user_id}")[0]['name'].present?
-      #   User.where("id = #{comment.user_id}")[0]['name']
-      # else
-      #   User.where("id = #{comment.user_id}")[0]['email']
-      # end
       User.where("id = #{comment.user_id}")[0]
     end
   end

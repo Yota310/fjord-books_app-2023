@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 class Report < ApplicationRecord
-  has_many :comment, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user
 end

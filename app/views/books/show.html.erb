@@ -3,25 +3,9 @@
 <div class="show-item">
   <%= render @book %>
 </div>
+  
+  <%= render partial: 'comments/form', locals: {commentable: @book} %>
 
-<p>コメント一覧</p>
- <% @comments.each do |comment| %>
-<div class="show-item">
-  <%= comment.user.name %> :
-  <%= comment.comment %>
-</div>
-<% end %>
-
-<%= form_with(model:[@comment], method: :post) do |form| %>
-<div>
-  <%= form.label :comment, style: 'display: block' %>
-  <%= form.text_area :comment %>
-  <%= form.hidden_field :book_id, value: @book.id %>
-  <%= form.hidden_field :user_id, value: @user.id %>
-  <%= form.submit 'コメントする' %>
-
-</div>
-<% end %>
 <nav class="page-nav">
   <%= link_to t('views.common.edit', name: Book.model_name.human.downcase), edit_book_path(@book) %> |
   <%= link_to t('views.common.back', name: i18n_pluralize(Book.model_name.human.downcase)), books_path %>
