@@ -192,6 +192,7 @@ ja:
       title_index: "%{name}の一覧"
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      title_show: "%{name}の詳細ページ"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
     pagination:
@@ -211,8 +212,6 @@ ja:
     logout: 'ログアウト'
     title: 'ログイン'
     forget: 'パスワードをお忘れですか？'
-    confirmation: '確認の指示が来ていませんか？'
-    unlock: 'ロック解除の手順を受け取っていませんか？'
   users:
     registrations:
       title: '新規登録'
