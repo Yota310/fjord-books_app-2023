@@ -1,14 +1,12 @@
-<p style="color: green"><% notice %></p>
-
 <%= render @report %>
   
 <%= render partial: 'comments/form', locals: {commentable: @report} %>
 
 <nav class="page-nav"></nav>
   <%= link_to t('views.common.back', name: i18n_pluralize(Report.model_name.human.downcase)), reports_path %>
-  <% if current_user.name == @report.user %>
+  <% if current_user.id == @report.user_id %>
     | <%= link_to t('views.common.edit', name: Report.model_name.human.downcase), edit_user_registration_path %>
-    <%= button_to "Destroy this report", @report, method: :delete %>
+    <%= button_to t('views.common.destroy', name: Report.model_name.human.downcase), @report, method: :delete %>
   <% end %>
 
 </nav>
