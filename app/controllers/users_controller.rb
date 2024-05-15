@@ -6,6 +6,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.with_attached_avatar.find(params[:id])
+    @user = User.find(params[:id])
   end
 end
