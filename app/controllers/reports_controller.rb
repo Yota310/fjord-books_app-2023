@@ -67,7 +67,7 @@ class ReportsController < ApplicationController
   end
 
   def create_mention
-    @mentioned_ids.each do |mentioned_id| # 言及先の変数
+    @mentioned_ids.uniq.each do |mentioned_id| # 言及先の変数
       Mention.create!(mention_destination_report_id: mentioned_id, mention_source_report_id: @report.id)
     end
   end
