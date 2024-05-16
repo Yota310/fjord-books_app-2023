@@ -1,10 +1,9 @@
-<p style="color: green"><%= notice %></p>
-
+<p style="color: green"><%= t flash[:notice] %></p>
+<div class="show-item">
 <%= render @book %>
-
-<div>
-  <%= link_to "Edit this book", edit_book_path(@book) %> |
-  <%= link_to "Back to books", books_path %>
-
-  <%= button_to "Destroy this book", @book, method: :delete %>
 </div>
+  <nav>
+  <%= link_to I18n.t('link.edit_book_link'), edit_book_path(@book) %> |
+  <%= link_to I18n.t('link.back_to_books_link'), books_path %>
+  <%= button_to I18n.t('link.delete_book_link'), @book, method: :delete %>
+  </nav>

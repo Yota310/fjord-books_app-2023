@@ -1,0 +1,38 @@
+---
+ja:
+  notice:
+    update_state_text: '%{target}の更新に成功しました'
+    delete_state_text: '%{target}の削除に成功しました'
+    create_state_text: '%{target}の作成に成功しました'
+  link:
+    delete_book_link: 'この本を削除する'
+    back_to_books_link: '本一覧に戻る'
+    edit_book_link: 'この本を編集'
+    show_detail_post_link: 'この本を見る'
+    create_book_link: '新しい本を追加'
+  books:
+    edit:
+      title: '本の編集'
+    new:
+      title: '本の作成'
+    index:
+      title: '本一覧'
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+  test:
+    Edit this book: "この本を編集する"
+    Back to books: "本一覧に戻る"
+  activerecord:
+    models:
+      book: 本
+    attributes:
+      book:
+        author: 著者
+        memo: メモ
+        picture: 写真
+        title: タイトル

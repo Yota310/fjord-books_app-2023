@@ -115,6 +115,9 @@ GEM
       activesupport (>= 5.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    i18n_generators (2.2.2)
+      activerecord (>= 3.0.0)
+      railties (>= 3.0.0)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
@@ -189,6 +192,9 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
+    rails-i18n (7.0.9)
+      i18n (>= 0.7, < 2)
+      railties (>= 6.0.0, < 8)
     railties (7.0.6)
       actionpack (= 7.0.6)
       activesupport (= 7.0.6)
@@ -276,10 +282,12 @@ DEPENDENCIES
   carrierwave
   debug
   erb_lint
+  i18n_generators
   importmap-rails
   jbuilder
   puma
   rails (~> 7.0.6)
+  rails-i18n
   rubocop (~> 1.45.1)
   rubocop-fjord
   rubocop-rails
