@@ -20,8 +20,9 @@ class ReportsController < ApplicationController
 
   def create
     @report = current_user.reports.new(report_params)
-
     if @report.save
+      search_url
+      create_mention
       redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new, status: :unprocessable_entity
@@ -30,6 +31,9 @@ class ReportsController < ApplicationController
 
   def update
     if @report.update(report_params)
+      search_url
+      @report.mentioning_reports.destroy_all
+      create_mention
       redirect_to @report, notice: t('controllers.common.notice_update', name: Report.model_name.human)
     else
       render :edit, status: :unprocessable_entity
@@ -50,5 +54,21 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:title, :content)
+  end
+
+  def search_url
+    @urls = %r{http://localhost:3000/reports/\d+}.match(report_params[:content]).to_s
+    @urls = report_params[:content].scan(%r{http://localhost:3000/reports/\d+})
+    return if @urls.nil?
+
+    @mentioned_ids = @urls.map! do |url|
+      url.split('/').last
+    end
+  end
+
+  def create_mention
+    @mentioned_ids.each do |mentioned_id| # 言及先の変数
+      Mention.create!(mention_destination_report_id: mentioned_id, mention_source_report_id: @report.id)
+    end
   end
 end
