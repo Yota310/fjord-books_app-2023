@@ -227,3 +227,8 @@ ja:
   current_password_confirmation: 'パスワードを変更するための確認です'
   current_password: '元のパスワード'
   edit: '編集'
+  password_reset_button: 'パスワードをリセットする為の指示を送信'
+  change_password: 'パスワードを変更'
+  mail_content_explain: '誰かがあなたのパスワードを変更するためのリンクをリクエストしました。以下のリンクからこれを行うことができます。'
+  mail_content_ignore: 'リクエストしていない場合は、このメールを無視してください。'
+  mail_content_no_change: '上のリンクにアクセスして新しいパスワードを作成するまで、パスワードは変更されません。'
