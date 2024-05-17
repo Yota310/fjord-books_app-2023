@@ -5,13 +5,11 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @books = Book.with_attached_image.order(:id).page(params[:page])
+    @books = Book.order(:id).page(params[:page])
   end
 
   # GET /books/1 or /books/1.json
-  def show
-    @book = Book.with_attached_image.find(params[:id])
-  end
+  def show; end
 
   # GET /books/new
   def new
@@ -68,6 +66,6 @@ class BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def book_params
-    params.require(:book).permit(:title, :memo, :author, :image)
+    params.require(:book).permit(:title, :memo, :author, :picture)
   end
 end

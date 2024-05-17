@@ -16,7 +16,7 @@
 
   <p>
     <strong><%= Book.human_attribute_name(:picture) %>:</strong>
-    <%= image_tag(book.image.variant(resize_to_limit: [100, 100]).processed) if book.image.present? %>
+    <%= image_tag(book.picture_url) if book.picture.present? %>
   </p>
 
 </div>
