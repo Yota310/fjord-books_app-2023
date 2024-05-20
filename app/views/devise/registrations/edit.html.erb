@@ -43,5 +43,5 @@
 <div><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { turbo_confirm: t('.are_you_sure') }, method: :delete %></div>
 
 <nav class="page-nav">
-  <%= link_to t('devise.shared.links.back'), users_path %>
+  <%= link_to t('devise.shared.links.back'), :back %>
 </nav>
