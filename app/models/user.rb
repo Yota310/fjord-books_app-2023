@@ -9,5 +9,4 @@ class User < ApplicationRecord
   end
   has_many :comments, dependent: :destroy
   has_many :reports, dependent: :destroy
-  has_many :books, dependent: :destroy
 end
