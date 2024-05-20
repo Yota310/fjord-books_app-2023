@@ -11,7 +11,6 @@ class ReportsController < ApplicationController
     @user = current_user
     @comment = Comment.new
     @comments = @report.comments
-    set_comment_users
   end
 
   def new
@@ -19,8 +18,8 @@ class ReportsController < ApplicationController
   end
 
   def edit
-    if current_user.name == @report.user
-      render 'edit'
+    if current_user.reports.find(@report.id)
+      render 'reports/edit'
     else
       redirect_to reports_path
     end
@@ -28,19 +27,22 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.new(report_params)
-
-    if @report.save
-      format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human) }
-    else
-      format.html { render :new, status: :unprocessable_entity }
+    respond_to do |format|
+      if @report.save
+        format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human) }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-    if @report.update(report_params)
-      format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human) }
-    else
-      format.html { render :edit, status: :unprocessable_entity }
+    respond_to do |format|
+      if @report.update(report_params)
+        format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human) }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -62,11 +64,5 @@ class ReportsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def report_params
     params.require(:report).permit(:title, :content, :user_id).merge(user_id: current_user.id)
-  end
-
-  def set_comment_users
-    @users = @comments.map do |comment|
-      User.where("id = #{comment.user_id}")[0]
-    end
   end
 end

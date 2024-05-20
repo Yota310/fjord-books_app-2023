@@ -4,7 +4,7 @@
   <%= comment.user.name %> :
   <%= comment.comment %>
   <%= comment.created_at.to_s(:datetime_jp) %>
-  <% if comment.user_id = current_user %>
+  <% if comment.user_id == current_user %>
   <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), comment, method: :delete %>
   <% end %>
 </div>
