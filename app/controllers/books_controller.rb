@@ -11,7 +11,6 @@ class BooksController < ApplicationController
     @user = current_user
     @comment = Comment.new
     @comments = @book.comments # 表示している本のidを持つコメントを表示
-    set_comment_users
   end
 
   def new
@@ -61,11 +60,5 @@ class BooksController < ApplicationController
   # Only allow a list of trusted parameters through.
   def book_params
     params.require(:book).permit(:title, :memo, :author, :picture, :user_id)
-  end
-
-  def set_comment_users
-    @users = @comments.map do |comment|
-      User.where("id = #{comment.user_id}")[0]
-    end
   end
 end

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    @comment.destroy if current_user.comments.find(@comment.id)
 
     respond_to do |format|
       format.html { redirect_to root_path, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human) }
@@ -20,6 +20,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:comment, :commentable_id, :commentable_type, :user_id)
+    params.require(:comment).permit(:comment, :commentable_id, :commentable_type, :user_id).merge(user_id: currnet_user.id)
   end
 end
