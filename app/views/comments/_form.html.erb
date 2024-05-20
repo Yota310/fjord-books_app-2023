@@ -1,14 +1,14 @@
 <p><%= t('views.common.title_index', name: Comment.model_name.human ) %></p>
- <% @comments.each do |comment| %>
-<div class="show-item">
-  <%= comment.user.name %> :
-  <%= comment.comment %>
-  <%= comment.created_at.to_s(:datetime_jp) %>
-  <% if comment.user_id == current_user %>
-  <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), comment, method: :delete %>
+  <% @comments.each do |comment| %>
+    <div class="show-item">
+      <%= comment.user.name %> :
+      <%= comment.comment %>
+      <%= comment.created_at.to_s(:datetime_jp) %>
+      <% if comment.user_id == current_user %>
+      <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), comment, method: :delete %>
+      <% end %>
+    </div>
   <% end %>
-</div>
-<% end %>
 
 <%= form_with(model:[@comment], method: :post) do |form| %>
 <div>
