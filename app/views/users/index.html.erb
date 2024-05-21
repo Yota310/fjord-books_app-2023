@@ -1,0 +1,10 @@
+<h1><%= t('views.common.title_index', name: i18n_pluralize(User.model_name.human)) %></h1>
+<% @users.each do |user| %>
+<div>
+<%= render user %>
+<%= link_to t('views.common.show', name: User.model_name.human.downcase), user %>
+<% end %>
+</div>
+<p>
+  <%= link_to t('views.common.back', name: i18n_pluralize(Book.model_name.human.downcase)), books_path %>
+</p>

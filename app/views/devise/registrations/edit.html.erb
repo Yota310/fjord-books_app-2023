@@ -1,0 +1,57 @@
+<h2><%= t('views.common.title_edit', name: resource.name ) %></h2>
+
+<%= form_for(resource, as: resource_name, url: '/users', html: { method: :put }) do |f| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+
+   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile %><br />
+    <%= f.text_field :profile, autocomplete: "profile" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autocomplete: "address" %>
+  </div>
+
+  <div class="postcode">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode, autocomplete: "postcode" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %> <i><%= (t('users.registrations.edit.leave')) %></i><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= t("users.registrations.char_min", num: @minimum_password_length) %></em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('password_confirmation') %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label t('current_password') %> <i>(<%= t('current_password_confirmation') %>)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit t('.update') %>
+  </div>
+<% end %>
+
+<div> <%= t('.unhappy') %> <%= button_to t('users.registrations.edit.cancel'), registration_path(resource_name), data: { confirm: t('view.common.delete_confirm'), turbo_confirm: t('view.common.delete_confirm') }, method: :delete %></div>
+
+<%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human)), resource %>

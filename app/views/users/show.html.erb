@@ -1,0 +1,11 @@
+<h1><%= t('views.common.title_show', name: @user.name) %></h1>
+
+<div>
+<p><%= User.human_attribute_name('profile') %>: <%= @user.profile %></p>
+<p><%= User.human_attribute_name('email') %>: <%= @user.email %></p>
+<p><%= User.human_attribute_name('address') %>: <%= @user.address %></p>
+<p><%= User.human_attribute_name('postcode' ) %>: <%= @user.postcode %></p>
+
+<%= link_to t('views.common.edit', name: i18n_pluralize(User.model_name.human)), edit_user_registration_path %>
+<%= link_to t('views.common.back', name: i18n_pluralize(User.model_name.human)), users_path %>
+</div>

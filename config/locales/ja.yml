@@ -192,6 +192,7 @@ ja:
       title_index: "%{name}の一覧"
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
+      title_show: "%{name}の詳細ページ"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
     pagination:
@@ -205,3 +206,30 @@ ja:
       notice_create: "%{name}が作成されました。"
       notice_update: "%{name}が更新されました。"
       notice_destroy: "%{name}が削除されました。"
+  login:
+    state: 'ログイン中'
+    edit: 'プロフィールを編集'
+    logout: 'ログアウト'
+    title: 'ログイン'
+    forget: 'パスワードをお忘れですか？'
+  users:
+    registrations:
+      title: '新規登録'
+      char_min: "%{num}文字以上"
+      edit:
+        leave: '変更がない場合空白にしてください'
+        title: 'ユーザーを編集'
+        update: '更新'
+        cancel: 'アカウントをキャンセルする'
+        unhappy: '不幸ですか？'    
+  password_confirmation: 'パスワード確認'
+  sign_up: '新規登録'
+  current_password_confirmation: 'パスワードを変更するための確認です'
+  current_password: '元のパスワード'
+  edit: '編集'
+  password_reset_button: 'パスワードをリセットする為の指示を送信'
+  change_password: 'パスワードを変更'
+  mail_content_explain: '誰かがあなたのパスワードを変更するためのリンクをリクエストしました。以下のリンクからこれを行うことができます。'
+  mail_content_ignore: 'リクエストしていない場合は、このメールを無視してください。'
+  mail_content_no_change: '上のリンクにアクセスして新しいパスワードを作成するまで、パスワードは変更されません。'
+  hello: 'こんにちは'

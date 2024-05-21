@@ -1,0 +1,33 @@
+<h2><%= t('users.registrations.title') %></h2>
+
+<%= form_with(model: @user) do |form| %>
+  <%= render "users/shared/error_messages", resource: resource %>
+    <div class="field">
+    <%= form.label :name %><br />
+    <%= form.text_field :name, autofocus: true %>
+    </div>
+
+  <div class="field">
+    <%= form.label :email %><br />
+    <%= form.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= t("users.registrations.char_min", num: @minimum_password_length) %>)</em>
+    <% end %><br />
+    <%= form.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= form.label t('password_confirmation') %><br />
+    <%= form.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit t('sign_up') %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
