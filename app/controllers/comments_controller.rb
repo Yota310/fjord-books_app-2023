@@ -8,13 +8,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @comment.destroy if current_user.comments.find(@comment.id)
-
-    respond_to do |format|
-      format.html { redirect_to root_path, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human) }
-      format.json { head :no_content }
-    end
+    current_user.comments.find(params[:id]).destroy
+    redirect_to root_path, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
   end
 
   private

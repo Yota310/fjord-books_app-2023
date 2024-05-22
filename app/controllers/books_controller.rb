@@ -4,18 +4,16 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
 
   def index
-    @books = Book.order(id: 'ASC').page(params[:page])
+    @books = Book.order(id: 'DESC').page(params[:page])
   end
 
   def show
-    @user = current_user
     @comment = Comment.new
     @comments = @book.comments # 表示している本のidを持つコメントを表示
   end
 
   def new
     @book = Book.new
-    @user = current_user
   end
 
   def edit; end
@@ -23,31 +21,24 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
 
-    respond_to do |format|
-      if @book.save
-        format.html { redirect_to book_url(@book), notice: t('controllers.common.notice_create', name: Book.model_name.human) }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
+    if @book.save
+      redirect_to book_url(@book), notice: t('controllers.common.notice_create', name: Book.model_name.human)
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if @book.update(book_params)
-        format.html { redirect_to book_url(@book), notice: t('controllers.common.notice_update', name: Book.model_name.human) }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @book.update(book_params)
+      redirect_to book_url(@book), notice: t('controllers.common.notice_update', name: Book.model_name.human)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @book.destroy
-
-    respond_to do |format|
-      format.html { redirect_to books_url, notice: t('controllers.common.notice_destroy', name: Book.model_name.human) }
-    end
+    redirect_to books_url, notice: t('controllers.common.notice_destroy', name: Book.model_name.human)
   end
 
   private
@@ -59,6 +50,6 @@ class BooksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def book_params
-    params.require(:book).permit(:title, :memo, :author, :picture, :user_id)
+    params.require(:book).permit(:title, :memo, :author, :picture)
   end
 end
