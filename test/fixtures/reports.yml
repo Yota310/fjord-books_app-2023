@@ -1,11 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  title: MyString
-  content: MyText
+cherry_book:
+  title: プロを目指す人のためのRuby入門を読んだ
+  content: おもろい
+  user: alice
 
-two:
-  user: two
-  title: MyString
-  content: MyText
