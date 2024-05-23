@@ -5,11 +5,11 @@
 </div>
 
 <strong><%= t('mention_title') %></strong>
-<% @report.mentioned_reports.each do |mentioned_report| %>
-<div class="show-item">
-  <%= mentioned_report.title %>
-</div>
- <% end %>
+<% @report.mentioned_reports.order(:id).each do |mentioned_report| %>
+  <div class="show-item">
+    <%=link_to mentioned_report.title, report_path(mentioned_report.id) %>
+  </div>
+<% end %>
 
 <%= render 'shared/comments', commentable: @report %>
 
