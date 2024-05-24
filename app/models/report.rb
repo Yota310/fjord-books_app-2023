@@ -3,10 +3,13 @@
 class Report < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
-  has_many :mentioned_relation, foreign_key: 'mention_destination_report_id', class_name: 'Mention', dependent: :destroy, inverse_of: :mention_source_report
-  has_many :mentioned_reports, through: :mentioned_relation, source: :mention_source_report
-  has_many :mentioning_relation, foreign_key: 'mention_source_report_id', class_name: 'Mention', dependent: :destroy, inverse_of: :mention_destination_report
-  has_many :mentioning_reports, through: :mentioning_relation, source: :mention_destination_report
+  # 本記事が言及するレポート
+  has_many :mention_source_relations, class_name: 'Mention', dependent: :destroy, inverse_of: :mention_destination_report, foreign_key: 'mention_destination_report_id'
+  has_many :mentioning_reports, through: :mention_source_relations, source: :mention_destination_report
+
+  # 本記事に言及しているレポート
+  has_many :mention_destination_relations, class_name: 'Mention', dependent: :destroy, inverse_of: :mention_source_report, foreign_key: 'mention_source_report_id'
+  has_many :mentioned_reports, through: :mention_destination_relations, source: :mention_source_report
 
   validates :title, presence: true
   validates :content, presence: true
@@ -21,15 +24,16 @@ class Report < ApplicationRecord
   end
 
   def create_mention
-    mentioning_reports.destroy_all
-    @urls = content.scan(%r{http://localhost:3000/reports/\d+})
-    return if @urls.nil?
+    urls = content.scan(%r{http://localhost:3000/reports/\d+})
+    return if urls.empty?
 
-    @mentioned_ids = @urls.map! do |url|
+    mention_destination_ids = urls.map do |url|
       url.split('/').last
     end
-    @mentioned_ids.uniq.each do |mentioned_id| # 言及先の変数
-      Mention.create!(mention_destination_report_id: mentioned_id, mention_source_report_id: id)
+    mention_source_relations.destroy_all
+    mention_destination_ids.uniq.each do |mention_destination_id|
+      binding.irb
+      mention_source_relations.create!(mention_destination_report_id: mention_destination_id)
     end
   end
 end
