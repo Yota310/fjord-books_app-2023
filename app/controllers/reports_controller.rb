@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show edit update destroy]
+  before_action :set_report, only: %i[show]
 
   def index
     @reports = Report.order(id: 'DESC').page(params[:page])
@@ -27,19 +27,17 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
     if @report.save
-      redirect_to report_url(@report), notice: t('controllers.common.notice_create', name: Report.model_name.human)
+      redirect_to report_url(params[:id]), notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    respond_to do |format|
-      if current_user.reports.find(params[:id]).update(report_params)
-        format.html { redirect_to report_url(@report), notice: t('controllers.common.notice_update', name: Report.model_name.human) }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if current_user.reports.find(params[:id]).update(report_params)
+      redirect_to report_url(params[:id]), notice: t('controllers.common.notice_update', name: Report.model_name.human)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
