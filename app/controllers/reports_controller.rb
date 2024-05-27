@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[show]
-
   def index
     @reports = Report.order(id: 'DESC').page(params[:page])
   end
 
   def show
+    @report = Report.find(params[:id])
     @comment = Comment.new
     @comments = @report.comments
   end
@@ -17,11 +16,8 @@ class ReportsController < ApplicationController
   end
 
   def edit
-    if current_user.reports.find(@report.id)
-      render 'reports/edit'
-    else
-      redirect_to reports_path
-    end
+    @report = current_user.reports.find(params[:id])
+    render 'reports/edit'
   end
 
   def create
@@ -48,11 +44,6 @@ class ReportsController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_report
-    @report = Report.find(params[:id])
-  end
 
   # Only allow a list of trusted parameters through.
   def report_params
