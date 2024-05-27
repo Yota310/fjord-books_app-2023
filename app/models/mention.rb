@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Mention < ApplicationRecord
-  belongs_to :mention_source_report, class_name: 'Report', inverse_of: :mention_destination_relations
+  belongs_to :source_report, class_name: 'Report'
 
-  belongs_to :mention_destination_report, class_name: 'Report', inverse_of: :mention_source_relations
+  belongs_to :destination_report, class_name: 'Report'
 
-  validates :mention_destination_report_id, uniqueness: { scope: :mention_source_report_id }
+  validates :destination_report_id, uniqueness: { scope: :source_report_id }
 end
