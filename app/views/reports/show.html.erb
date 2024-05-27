@@ -4,10 +4,10 @@
   <%= render @report %>
 </div>
 
-<strong><%= t('mention_title') %></strong>
-<% @report.mentioned_reports.order(:id).each do |mentioned_report| %>
+<strong><%= t('.title') %></strong>
+<% @report.mention_source_reports.order(:id).each do |mentioned_report| %>
   <div class="show-item">
-    <%= link_to mentioned_report.title, report_path(mentioned_report.id) %>
+    <%= link_to mentioned_report.title, report_path(mentioned_report) %>
   </div>
 <% end %>
 
