@@ -3,11 +3,9 @@
 class Report < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable, dependent: :destroy
-  # 本記事が言及するレポート(Source)
   has_many :mention_destination_relations, class_name: 'Mention', dependent: :destroy, inverse_of: :source_report, foreign_key: 'source_report_id'
   has_many :mention_destination_reports, through: :mention_destination_relations, source: :destination_report
 
-  # 本記事に言及しているレポート(Destination)
   has_many :mention_source_relations, class_name: 'Mention', dependent: :destroy, inverse_of: :destination_report, foreign_key: 'destination_report_id'
   has_many :mention_source_reports, through: :mention_source_relations, source: :source_report
 
