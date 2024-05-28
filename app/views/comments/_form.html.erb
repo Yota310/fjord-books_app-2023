@@ -1,0 +1,21 @@
+<p><%= t('views.common.title_index', name: Comment.model_name.human ) %></p>
+<% @comments.each do |comment| %>
+  <div class="show-item">
+    <%= comment.user.name %> :
+    <%= comment.content %>
+    <%= l comment.created_at %>
+    <% if comment.user_id == current_user.id %>
+      <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), comment, method: :delete %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with(model:[@comment], method: :post) do |form| %>
+  <div>
+    <%= form.label :content, style: 'display: block' %>
+    <%= form.text_area :content, required: true %>
+    <%= form.hidden_field :commentable_id, value: commentable.id %>
+    <%= form.hidden_field :commentable_type, value: commentable.class.name %>
+    <%= form.submit t('submit', name:Comment.model_name.human) %>
+  </div>
+<% end %>
