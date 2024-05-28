@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_02_082433) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_16_044804) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_082433) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -57,6 +57,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_082433) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "mentions", force: :cascade do |t|
+    t.integer "source_report_id", null: false
+    t.integer "destination_report_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_report_id"], name: "index_mentions_on_destination_report_id"
+    t.index ["source_report_id", "destination_report_id"], name: "index_on_mention_source_and_destination", unique: true
+    t.index ["source_report_id"], name: "index_mentions_on_source_report_id"
   end
 
   create_table "reports", force: :cascade do |t|
@@ -87,5 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_02_082433) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "users"
+  add_foreign_key "mentions", "reports", column: "destination_report_id"
+  add_foreign_key "mentions", "reports", column: "source_report_id"
   add_foreign_key "reports", "users"
 end

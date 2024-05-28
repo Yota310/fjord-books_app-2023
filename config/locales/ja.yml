@@ -221,3 +221,6 @@ ja:
     registrations:
       edit:
         title: "アカウント編集"
+  reports:
+      show:
+        title: 'この日報に対して言及している日報'
