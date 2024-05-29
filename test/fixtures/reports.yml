@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 cherry_book:
+  id: 1
   title: プロを目指す人のためのRuby入門を読んだ
   content: おもろい
   user: alice
 
+mention_report:
+  id: 2
+  title: メンションするレポート
+  content: 'コンテント'
+  user: bob
