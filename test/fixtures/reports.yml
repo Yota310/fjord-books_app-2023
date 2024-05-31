@@ -8,6 +8,30 @@ cherry_book:
 
 mention_report:
   id: 2
-  title: メンションするレポート
+  title: id1メンションするレポート
   content: 'コンテント'
+  user: bob
+
+another_mention_report:
+  id: 3
+  title: id1をメンションする
+  content: コンテント
+  user: bob
+  
+mention_to_id2_report1:
+  id: 4
+  title: id2をメンションする
+  content: コンテント
+  user: bob
+
+mention_to_id2_report2:
+  id: 5
+  title: id2をメンションする
+  content: コンテント
+  user: bob
+
+self_mention_report:
+  id: 6
+  title: id6をメンションする
+  content: コンテント
   user: bob
