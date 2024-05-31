@@ -43,10 +43,11 @@ class ReportsTest < ApplicationSystemTestCase
   end
 
   test 'should destroy Report' do
+    rc = Report.count
     visit report_url(@report)
     click_on 'この日報を削除'
 
     assert_text '日報が削除されました。'
-    assert_equal(1, Report.count)
+    assert_equal(-1, Report.count - rc)
   end
 end
