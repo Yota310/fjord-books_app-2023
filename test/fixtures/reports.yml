@@ -2,13 +2,13 @@
 
 cherry_book:
   id: 1
-  title: プロを目指す人のためのRuby入門を読んだ
+  title: メンションの対象になるレポートです
   content: おもろい
   user: alice
 
 mention_report:
   id: 2
-  title: id1メンションするレポート
+  title: id1をメンションするレポート
   content: 'コンテント'
   user: bob
 
@@ -18,15 +18,15 @@ another_mention_report:
   content: コンテント
   user: bob
   
-mention_to_id2_report1:
+mention_double_report:
   id: 4
-  title: id2をメンションする
+  title: 二重でメンションするレポート
   content: コンテント
   user: bob
 
-mention_to_id2_report2:
+mentioned_double_report2:
   id: 5
-  title: id2をメンションする
+  title: 二重でメンションされるレポート
   content: コンテント
   user: bob
 
