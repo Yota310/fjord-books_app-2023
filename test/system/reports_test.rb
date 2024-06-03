@@ -12,7 +12,7 @@ class ReportsTest < ApplicationSystemTestCase
   test 'visiting the index' do
     visit reports_url
     assert_selector 'h1', text: '日報の一覧'
-    assert_text 'プロを目指す人のためのRuby入門を読んだ'
+    assert_text 'メンションの対象になるレポートです'
     assert_text 'おもろい'
   end
 
