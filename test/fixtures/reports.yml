@@ -24,7 +24,7 @@ mention_double_report:
   content: コンテント
   user: bob
 
-mentioned_double_report2:
+mentioned_double_report:
   id: 5
   title: 二重でメンションされるレポート
   content: コンテント
