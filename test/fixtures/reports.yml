@@ -1,11 +1,37 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  title: MyString
-  content: MyText
+cherry_book:
+  id: 1
+  title: メンションの対象になるレポートです
+  content: おもろい
+  user: alice
 
-two:
-  user: two
-  title: MyString
-  content: MyText
+mention_report:
+  id: 2
+  title: id1をメンションするレポート
+  content: 'コンテント'
+  user: bob
+
+another_mention_report:
+  id: 3
+  title: id1をメンションする
+  content: コンテント
+  user: bob
+  
+mention_double_report:
+  id: 4
+  title: 二重でメンションするレポート
+  content: コンテント
+  user: bob
+
+mentioned_double_report:
+  id: 5
+  title: 二重でメンションされるレポート
+  content: コンテント
+  user: bob
+
+self_mention_report:
+  id: 6
+  title: id6をメンションする
+  content: コンテント
+  user: bob
