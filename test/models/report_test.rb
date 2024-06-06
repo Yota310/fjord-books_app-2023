@@ -24,13 +24,13 @@ class ReportTest < ActiveSupport::TestCase
     mention_report.content = "私はhttp://localhost:3000/reports/#{cherry_book.id}のレポートについて言及します"
     mention_report.save
     assert_equal 1, mention_report.mentioning_reports.count
-    assert_equal cherry_book.title, mention_report.mentioning_reports[0].title
+    assert_equal cherry_book.id, mention_report.mentioning_reports[0].id
 
     another_mention_report = reports(:another_mention_report)
     another_mention_report.content = "私はhttp://localhost:3000/reports/#{mention_report.id}のレポートについて言及します"
     another_mention_report.save
     assert_equal 1, another_mention_report.mentioning_reports.count
-    assert_equal mention_report.title, another_mention_report.mentioning_reports[0].title
+    assert_equal mention_report.id, another_mention_report.mentioning_reports[0].id
 
     mention_report.update(content: '内容を編集')
     assert_equal '内容を編集', Report.find(mention_report.id).content
@@ -41,7 +41,7 @@ class ReportTest < ActiveSupport::TestCase
     mention_double_report.content = "私はこのレポートについて2重で言及しますhttp://localhost:3000/reports/#{mentioned_double_report.id}、http://localhost:3000/reports/#{mentioned_double_report.id}"
     mention_double_report.save
     assert_equal 1, mention_double_report.mentioning_reports.count
-    assert_equal mentioned_double_report.title, mention_double_report.mentioning_reports[0].title
+    assert_equal mentioned_double_report.id, mention_double_report.mentioning_reports[0].id
 
     self_mention_report = reports(:self_mention_report)
     self_mention_report.content = "自らに言及をしますhttp://localhost:3000/reports/#{self_mention_report.id}"
