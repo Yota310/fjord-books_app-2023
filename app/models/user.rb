@@ -11,7 +11,24 @@ class User < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [150, 150]
   end
 
+  validates :uid, uniqueness: { scope: :provider }, if: -> { uid.present? }
+
   def name_or_email
     name.presence || email
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
+      user.email = auth.info.email
+      # 任意の20文字の文字列を作成する
+      user.password = Devise.friendly_token[0, 20]
+      user.name = auth.info.name
+
+      user.save if user.persisted? || auth.provider == 'github'
+    end
+  end
+
+  def self.create_unique_string
+    SecureRandom.uuid
   end
 end
