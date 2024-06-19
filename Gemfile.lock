@@ -114,6 +114,9 @@ GEM
     devise-i18n (1.12.1)
       devise (>= 4.9.0)
     dotenv (3.1.2)
+    dotenv-rails (3.1.2)
+      dotenv (= 3.1.2)
+      railties (>= 6.1)
     erb_lint (0.4.0)
       activesupport
       better_html (>= 2.0.1)
@@ -361,7 +364,7 @@ DEPENDENCIES
   debug
   devise
   devise-i18n
-  dotenv
+  dotenv-rails
   erb_lint
   faker
   i18n_generators

@@ -90,4 +90,4 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'rails_autolink'
 
-gem 'dotenv', groups: %i[development test]
+gem 'dotenv-rails', groups: %i[development test]
