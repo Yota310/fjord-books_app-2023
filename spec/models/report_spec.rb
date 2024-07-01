@@ -82,6 +82,7 @@ RSpec.describe Report, type: :model do
     before do
       @before_report_count = mention_report.mentioning_reports.count
     end
+
     it 'メンションを保存することができる' do
       mention_report.save
       expect(@before_report_count).to eq 0
@@ -94,6 +95,7 @@ RSpec.describe Report, type: :model do
         mention_report.save
         @before_report_count = mention_report.mentioning_reports.count
       end
+
       it '編集によってメンションしている数が増える' do
         mention_report.update!(content: "http://localhost:3000/reports/#{mentioned_report.id}私は編集によってmentionedレポートを言及します")
         expect(@before_report_count).to eq 0
@@ -112,6 +114,7 @@ RSpec.describe Report, type: :model do
         mention_report.save
         @before_report_count = mention_report.mentioning_reports.count
       end
+
       it '編集によってメンションしている数が減る' do
         mention_report.update!(content: 'レポートの内容を変更します。これによってメンションしているレポートがなくなります')
         expect(@before_report_count).to eq 1

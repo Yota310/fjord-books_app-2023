@@ -7,6 +7,7 @@ RSpec.describe 'Reports', type: :system do
     user = User.create!(name: 'alice', email: 'alice@example.com', password: '123456', password_confirmation: '123456')
     @report = user.reports.create!(content: 'aliceの日報です。今日のお昼はうどんでした', title: 'aliceの今日の日報')
   end
+
   it 'create report' do
     visit root_path
     fill_in 'Eメール', with: 'alice@example.com'
