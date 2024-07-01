@@ -67,13 +67,13 @@ RSpec.describe Report, type: :model do
       )
     end
     let!(:mentioned_report) do
-      user.report.create!(
+      user.reports.create!(
         content: 'この日報はメンションされる日報になります。',
         title: 'メンションされるレポート'
       )
     end
     let!(:mention_report) do
-      user.report.create!(
+      user.reports.create!(
         content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します",
         title: 'メンションするレポート'
       )
