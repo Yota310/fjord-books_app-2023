@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Reports', type: :system do
   before do
     user = User.create!(name: 'alice', email: 'alice@example.com', password: '123456', password_confirmation: '123456')
-    @report = Report.create(user_id: user.id, content: 'content', title: 'title')
+    @report = user.reports.create!(content: 'aliceの日報です。今日のお昼はうどんでした', title: 'aliceの今日の日報')
   end
   it 'create report' do
     visit root_path
