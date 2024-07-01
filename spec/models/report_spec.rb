@@ -4,31 +4,28 @@ require 'rails_helper'
 
 RSpec.describe Report, type: :model do
   describe '#editable' do
-    let(:user) { User.create!(**params) }
-    let(:params) do
-      {
+    let(:user) do
+      User.create!(
         name: 'alice',
         email: 'alice@example.com',
         password: '123456',
         password_confirmation: '123456'
-      }
+      )
     end
-    let(:another_user) { User.create!(**another_params) }
-    let(:another_params) do
-      {
+    let(:another_user) do
+      User.create!(
         name: 'bob',
         email: 'bob@example.com',
         password: '123456',
         password_confirmation: '123456'
-      }
+      )
     end
-    let(:report) { Report.create!(**report_params) }
-    let(:report_params) do
-      {
+    let(:report) do
+      Report.create!(
         user_id: user.id,
         content: 'content',
         title: 'title'
-      }
+      )
     end
     context 'user have report' do
       it 'is editable' do
