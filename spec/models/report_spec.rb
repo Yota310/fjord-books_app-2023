@@ -102,6 +102,7 @@ RSpec.describe Report, type: :model do
         expect(mention_report.mentioning_reports.count).to eq 1
         expect(mention_report.mentioning_reports).to eq [mentioned_report]
       end
+
       it '二重でメンションしても１つのメンションになる' do
         mention_report.update!(content: "http://localhost:3000/reports/#{mentioned_report.id}私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}")
         expect(@before_report_count).to eq 0
@@ -121,6 +122,7 @@ RSpec.describe Report, type: :model do
         expect(mention_report.mentioning_reports.count).to eq 0
         expect(mentioned_report.mentioned_reports.count).to eq 0
       end
+
       it '自分自身をメンションしても保存されない' do
         mention_report.update!(content: "http://localhost:3000/reports/#{mention_report.id}私は自身を言及しますが保存されません")
         expect(@before_report_count).to eq 1

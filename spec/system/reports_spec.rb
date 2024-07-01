@@ -24,6 +24,7 @@ RSpec.describe 'Reports', type: :system do
     expect(page).to have_content '日報を新規作成してみた'
     expect(page).to have_content 'ここで新しい日報を作成します。よろしくお願いいたします。'
   end
+
   it 'edit report' do
     visit root_path
     fill_in 'Eメール', with: 'alice@example.com'
@@ -39,6 +40,7 @@ RSpec.describe 'Reports', type: :system do
     expect(page).to have_content 'タイトルを編集した'
     expect(page).to have_content '内容を編集'
   end
+
   it 'delete report' do
     rc = Report.count
     visit root_path
