@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
     end
     context '名前が存在する時' do
       it '名前を返す' do
-        user.update!(name: 'alice')
+        user.name = 'alice'
         expect(user.name_or_email).to eq 'alice'
       end
     end
