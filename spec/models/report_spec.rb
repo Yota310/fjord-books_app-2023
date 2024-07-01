@@ -73,12 +73,13 @@ RSpec.describe Report, type: :model do
       )
     end
     let!(:mention_report) do
-      user.reports.create!(
+      user.reports.new(
         content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します",
         title: 'メンションするレポート'
       )
     end
     it 'メンションを保存することができる' do
+      mention_report.save
       expect(mention_report.mentioning_reports.count).to eq 1
       expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
     end
