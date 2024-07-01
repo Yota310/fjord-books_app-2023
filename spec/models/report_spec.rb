@@ -41,55 +41,48 @@ RSpec.describe Report, type: :model do
   before do
   end
   describe '#created_on' do
-    let(:user) { User.create!(**params) }
-    let(:params) do
-      {
+    let(:user) do
+      User.create!(
         name: 'alice',
         email: 'alice@example.com',
         password: '123456',
         password_confirmation: '123456'
-      }
+      )
     end
-    let(:report) { Report.create!(**report_params) }
-    let(:report_params) do
-      {
+    let(:report) do
+      Report.create!(
         user_id: user.id,
         content: 'content',
         title: 'title',
-        created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
-      }
+        created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00')
     end
     it '作られた日付を取得' do
       expect(report.created_on).to eq Date.new(2024, 6, 24)
     end
   end
   describe '#save_mentions' do
-    let!(:user) { User.create!(**params) }
-    let(:params) do
-      {
+    let!(:user) do
+      User.create!(
         name: 'alice',
         email: 'alice@example.com',
         password: '123456',
         password_confirmation: '123456'
-      }
+      )
     end
-    let!(:mentioned_report) { Report.create!(**mentioned_report_params) }
-    let(:mentioned_report_params) do
-      {
+    let!(:mentioned_report) do
+      Report.create!(
         user_id: user.id,
         content: 'mentioned',
         title: 'title',
         created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
-      }
+      )
     end
-    let!(:mention_report) { Report.create!(**mention_report_params) }
-    let(:mention_report_params) do
-      {
+    let!(:mention_report) do
+      Report.create!(
         user_id: user.id,
         content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します",
         title: 'title',
-        created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
-      }
+        created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00')
     end
     it 'メンションを保存することができる' do
       expect(mention_report.mentioning_reports.count).to eq 1
