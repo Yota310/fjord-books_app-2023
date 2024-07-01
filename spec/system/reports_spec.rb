@@ -42,15 +42,18 @@ RSpec.describe 'Reports', type: :system do
   end
 
   it 'delete report' do
-    rc = Report.count
     visit root_path
     fill_in 'Eメール', with: 'alice@example.com'
     fill_in 'パスワード', with: '123456'
     click_on 'ログイン'
     expect(page).to have_content 'ログインしました'
+    visit reports_path
+    expect(page).to have_content 'aliceの今日の日報'
+    expect(page).to have_content 'aliceの日報です。今日のお昼はうどんでした'
     visit report_path(@report)
     click_on 'この日報を削除'
     expect(page).to have_content '日報が削除されました。'
-    expect(rc - Report.count).to eq 1
+    expect(page).to_not have_content 'aliceの今日の日報'
+    expect(page).to_not have_content 'aliceの日報です。今日のお昼はうどんでした'
   end
 end
