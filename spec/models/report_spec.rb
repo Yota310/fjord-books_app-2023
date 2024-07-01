@@ -49,8 +49,8 @@ RSpec.describe Report, type: :model do
     let(:report) do
       user.reports.create!(
         content: 'content',
-        title: 'title',
-        created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00')
+        title: 'title'
+      )
     end
     it '作られた日付を取得' do
       expect(report.created_on).to eq Date.new(2024, 6, 24)
@@ -68,15 +68,14 @@ RSpec.describe Report, type: :model do
     let!(:mentioned_report) do
       user.report.create!(
         content: 'mentioned',
-        title: 'title',
-        created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
+        title: 'title'
       )
     end
     let!(:mention_report) do
       user.report.create!(
         content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します",
-        title: 'title',
-        created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00')
+        title: 'title'
+      )
     end
     it 'メンションを保存することができる' do
       expect(mention_report.mentioning_reports.count).to eq 1
