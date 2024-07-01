@@ -86,7 +86,7 @@ RSpec.describe Report, type: :model do
       mention_report.save
       expect(@before_report_count).to eq 0
       expect(mention_report.mentioning_reports.count).to eq 1
-      expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
+      expect(mention_report.mentioning_reports).to eq [mentioned_report]
     end
     context 'レポートが存在していて初期値よりメンション数が増える場合' do
       before do
@@ -98,13 +98,13 @@ RSpec.describe Report, type: :model do
         mention_report.update!(content: "http://localhost:3000/reports/#{mentioned_report.id}私は編集によってmentionedレポートを言及します")
         expect(@before_report_count).to eq 0
         expect(mention_report.mentioning_reports.count).to eq 1
-        expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
+        expect(mention_report.mentioning_reports).to eq [mentioned_report]
       end
       it '二重でメンションしても１つのメンションになる' do
         mention_report.update!(content: "http://localhost:3000/reports/#{mentioned_report.id}私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}")
         expect(@before_report_count).to eq 0
         expect(mention_report.mentioning_reports.count).to eq 1
-        expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
+        expect(mention_report.mentioning_reports).to eq [mentioned_report]
       end
     end
     context 'レポートが存在していて初期値よりメンション数が減る場合' do
