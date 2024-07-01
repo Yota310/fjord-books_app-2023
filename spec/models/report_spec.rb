@@ -22,8 +22,8 @@ RSpec.describe Report, type: :model do
     end
     let(:report) do
       user.reports.create!(
-        content: 'content',
-        title: 'title'
+        content: 'aliceの日報です、日報を書きます。今回は編集が可能かのテストのために書きました。',
+        title: '今日のレポート'
       )
     end
     context 'ユーザーがレポートを所有している' do
@@ -48,8 +48,8 @@ RSpec.describe Report, type: :model do
     end
     let(:report) do
       user.reports.create!(
-        content: 'content',
-        title: 'title'
+        content: 'aliceの日報です、日報を書きます。今回はcreated_onがしっかり日付を取得できているのか確かめるテストのために書きました。',
+        title: '今日のレポート'
       )
     end
     it '作られた日付を取得' do
@@ -67,14 +67,14 @@ RSpec.describe Report, type: :model do
     end
     let!(:mentioned_report) do
       user.report.create!(
-        content: 'mentioned',
-        title: 'title'
+        content: 'この日報はメンションされる日報になります。',
+        title: 'メンションされるレポート'
       )
     end
     let!(:mention_report) do
       user.report.create!(
         content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します",
-        title: 'title'
+        title: 'メンションするレポート'
       )
     end
     it 'メンションを保存することができる' do
