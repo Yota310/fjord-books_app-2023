@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
       expect(user.name_or_email).to eq 'alice@example.com'
     end
     it 'return name. if name exist' do
-      user.update(name: 'alice')
+      user.update!(name: 'alice')
       expect(user.name_or_email).to eq 'alice'
     end
   end
