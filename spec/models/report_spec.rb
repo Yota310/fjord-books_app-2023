@@ -84,22 +84,22 @@ RSpec.describe Report, type: :model do
       expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
     end
     it '編集によって減らしたメンションが適用される' do
-      mention_report.update(content: 'レポートの内容を変更します。これによってメンションしているレポートがなくなります')
+      mention_report.update!(content: 'レポートの内容を変更します。これによってメンションしているレポートがなくなります')
       expect(mention_report.mentioning_reports.count).to eq 0
       expect(mentioned_report.mentioned_reports.count).to eq 0
     end
     it '編集によって増やしたメンションが適用される' do
-      mention_report.update(content: "http://localhost:3000/reports/#{mentioned_report.id}私は編集によってmentionedレポートを言及します")
+      mention_report.update!(content: "http://localhost:3000/reports/#{mentioned_report.id}私は編集によってmentionedレポートを言及します")
       expect(mention_report.mentioning_reports.count).to eq 1
       expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
     end
     it '二重でメンションしても１つのメンションになる' do
-      mention_report.update(content: "http://localhost:3000/reports/#{mentioned_report.id}私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}")
+      mention_report.update!(content: "http://localhost:3000/reports/#{mentioned_report.id}私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}")
       expect(mention_report.mentioning_reports.count).to eq 1
       expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
     end
     it '自分自身をメンションしても保存されない' do
-      mention_report.update(content: "http://localhost:3000/reports/#{mention_report.id}私は自身を言及しますが保存されません")
+      mention_report.update!(content: "http://localhost:3000/reports/#{mention_report.id}私は自身を言及しますが保存されません")
       expect(mention_report.mentioning_reports.count).to eq 0
     end
   end
