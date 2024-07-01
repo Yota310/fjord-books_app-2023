@@ -21,8 +21,7 @@ RSpec.describe Report, type: :model do
       )
     end
     let(:report) do
-      Report.create!(
-        user_id: user.id,
+      user.reports.create!(
         content: 'content',
         title: 'title'
       )
@@ -48,8 +47,7 @@ RSpec.describe Report, type: :model do
       )
     end
     let(:report) do
-      Report.create!(
-        user_id: user.id,
+      user.reports.create!(
         content: 'content',
         title: 'title',
         created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00')
@@ -68,16 +66,14 @@ RSpec.describe Report, type: :model do
       )
     end
     let!(:mentioned_report) do
-      Report.create!(
-        user_id: user.id,
+      user.report.create!(
         content: 'mentioned',
         title: 'title',
         created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
       )
     end
     let!(:mention_report) do
-      Report.create!(
-        user_id: user.id,
+      user.report.create!(
         content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します",
         title: 'title',
         created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00')
