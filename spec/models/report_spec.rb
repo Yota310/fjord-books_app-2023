@@ -38,8 +38,6 @@ RSpec.describe Report, type: :model do
       end
     end
   end
-  before do
-  end
   describe '#created_on' do
     let(:user) do
       User.create!(
