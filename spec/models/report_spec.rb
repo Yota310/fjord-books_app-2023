@@ -27,13 +27,13 @@ RSpec.describe Report, type: :model do
         title: 'title'
       )
     end
-    context 'user have report' do
-      it 'is editable' do
+    context 'ユーザーがレポートを所有している' do
+      it '編集できる' do
         expect(report.editable?(user)).to be_truthy
       end
     end
-    context 'user don\'t have report' do
-      it 'is not editable' do
+    context 'ユーザーがレポートを所有していない' do
+      it '編集できない' do
         expect(report.editable?(another_user)).to be_falsey
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe Report, type: :model do
         created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
       }
     end
-    it 'is created' do
+    it '作られた日付を取得' do
       expect(report.created_on).to eq Date.new(2024, 6, 24)
     end
   end
@@ -91,26 +91,26 @@ RSpec.describe Report, type: :model do
         created_at: 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
       }
     end
-    it 'can save mention' do
+    it 'メンションを保存することができる' do
       expect(mention_report.mentioning_reports.count).to eq 1
       expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
     end
-    it 'applies to reduce mentions' do
+    it '編集によって減らしたメンションが適用される' do
       mention_report.update(content: 'レポートの内容を変更します。これによってメンションしているレポートがなくなります')
       expect(mention_report.mentioning_reports.count).to eq 0
       expect(mentioned_report.mentioned_reports.count).to eq 0
     end
-    it 'applies to increase mentions' do
+    it '編集によって増やしたメンションが適用される' do
       mention_report.update(content: "http://localhost:3000/reports/#{mentioned_report.id}私は編集によってmentionedレポートを言及します")
       expect(mention_report.mentioning_reports.count).to eq 1
       expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
     end
-    it 'is a duplicate mention' do
+    it '二重でメンションしても１つのメンションになる' do
       mention_report.update(content: "http://localhost:3000/reports/#{mentioned_report.id}私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}")
       expect(mention_report.mentioning_reports.count).to eq 1
       expect(mention_report.mentioning_reports[0].id).to eq mentioned_report.id
     end
-    it 'can\'t mention myself' do
+    it '自分自身をメンションしても保存されない' do
       mention_report.update(content: "http://localhost:3000/reports/#{mention_report.id}私は自身を言及しますが保存されません")
       expect(mention_report.mentioning_reports.count).to eq 0
     end
