@@ -16,12 +16,12 @@ RSpec.describe 'Reports', type: :system do
     expect(page).to have_content 'ログインしました'
     visit reports_path
     click_on '日報の新規作成'
-    fill_in 'タイトル', with: 'report1'
+    fill_in 'タイトル', with: '日報を新規作成してみた'
     fill_in '内容', with: 'ここで新しい日報を作成します。よろしくお願いいたします。'
     click_on '登録する'
 
     expect(page).to have_content '日報が作成されました。'
-    expect(page).to have_content 'report1'
+    expect(page).to have_content '日報を新規作成してみた'
     expect(page).to have_content 'ここで新しい日報を作成します。よろしくお願いいたします。'
   end
   it 'edit report' do
