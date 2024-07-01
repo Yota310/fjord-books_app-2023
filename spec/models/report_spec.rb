@@ -53,6 +53,7 @@ RSpec.describe Report, type: :model do
       )
     end
     it '作られた日付を取得' do
+      report.created_at = 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
       expect(report.created_on).to eq Date.new(2024, 6, 24)
     end
   end
