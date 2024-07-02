@@ -37,6 +37,7 @@ RSpec.describe Report, type: :model do
       end
     end
   end
+
   describe '#created_on' do
     let(:user) do
       User.create!(
@@ -57,6 +58,7 @@ RSpec.describe Report, type: :model do
       expect(report.created_on).to eq Date.new(2024, 6, 24)
     end
   end
+  
   describe '#save_mentions' do
     let!(:user) do
       User.create!(
