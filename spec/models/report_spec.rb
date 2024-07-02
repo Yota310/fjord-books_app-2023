@@ -54,11 +54,11 @@ RSpec.describe Report, type: :model do
       )
     end
     it '作られた日付を取得' do
-      report.created_at = 'Tue, 24 Jun 2024 14:33:07.146486000 JST +09:00'
+      report.created_at = '2024-06-24 14:33'.in_time_zone
       expect(report.created_on).to eq Date.new(2024, 6, 24)
     end
   end
-  
+
   describe '#save_mentions' do
     let!(:user) do
       User.create!(
