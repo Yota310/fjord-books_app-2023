@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'Reports', type: :system do
   before do
-    user = User.create!(name: 'alice', email: 'alice@example.com', password: '123456', password_confirmation: '123456')
-    @report = user.reports.create!(content: 'aliceの日報です。今日のお昼はうどんでした', title: 'aliceの今日の日報')
+    @user = FactoryBot.create(:user)
+    @report = @user.reports.create!(content: 'aliceの日報です。今日のお昼はうどんでした', title: 'aliceの今日の日報')
   end
 
   it 'create report' do
     visit root_path
-    fill_in 'Eメール', with: 'alice@example.com'
+    fill_in 'Eメール', with: @user.email
     fill_in 'パスワード', with: '123456'
     click_on 'ログイン'
     expect(page).to have_content 'ログインしました'
@@ -27,7 +27,7 @@ RSpec.describe 'Reports', type: :system do
 
   it 'edit report' do
     visit root_path
-    fill_in 'Eメール', with: 'alice@example.com'
+    fill_in 'Eメール', with: @user.email
     fill_in 'パスワード', with: '123456'
     click_on 'ログイン'
     expect(page).to have_content 'ログインしました'
@@ -43,7 +43,7 @@ RSpec.describe 'Reports', type: :system do
 
   it 'delete report' do
     visit root_path
-    fill_in 'Eメール', with: 'alice@example.com'
+    fill_in 'Eメール', with: @user.email
     fill_in 'パスワード', with: '123456'
     click_on 'ログイン'
     expect(page).to have_content 'ログインしました'
