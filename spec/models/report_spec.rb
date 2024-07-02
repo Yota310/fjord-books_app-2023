@@ -31,8 +31,12 @@ RSpec.describe Report, type: :model do
 
       it 'メンションを保存することができる' do
         expect(@before_report_count).to eq 0
+        user = FactoryBot.create(:user)
         mentioned_report = FactoryBot.create(:mentioned_report)
-        mention_report = FactoryBot.create(:mention_report, content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します")
+        mention_report = user.reports.create!(
+          content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します",
+          title: 'メンションするレポート'
+        )
         expect(mention_report.mentioning_reports.count).to eq 1
         expect(mention_report.mentioning_reports).to eq [mentioned_report]
       end
