@@ -22,8 +22,6 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.name = auth.info.name
       user.password = Devise.friendly_token[0, 20]
-
-      user.save if user.persisted? || auth.provider == 'github'
     end
   end
 
