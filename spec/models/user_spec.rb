@@ -10,6 +10,7 @@ RSpec.describe User, type: :model do
         expect(user.name_or_email).to eq user.email
       end
     end
+
     context '名前が存在する時' do
       it '名前を返す' do
         expect(FactoryBot.build(:user).name_or_email).to eq 'alice'
