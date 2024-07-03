@@ -83,12 +83,12 @@ RSpec.describe Report, type: :model do
           そしてlost_mention_reportも言及します。
           http://localhost:3000/reports/#{lost_mentioned_report.id}
         TEXT
-        expect {
+        expect do
           mention_report.update!(content: <<~TEXT)
             更新することで私はmentionedレポートとadd_mentioned_reportを言及します。
             http://localhost:3000/reports/#{mentioned_report.id},http://localhost:3000/reports/#{add_mentioned_report.id}
           TEXT
-        }
+        end
           .to change { mention_report.reload.mentioning_reports }
           .from([mentioned_report, lost_mentioned_report]).to([mentioned_report, add_mentioned_report])
       end
