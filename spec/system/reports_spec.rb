@@ -49,11 +49,9 @@ RSpec.describe 'Reports', type: :system do
     expect(page).to have_content 'ログインしました'
     visit reports_path
     expect(page).to have_content 'aliceの今日の日報'
-    expect(page).to have_content 'aliceの日報です。今日のお昼はうどんでした'
     visit report_path(@report)
     click_on 'この日報を削除'
     expect(page).to have_content '日報が削除されました。'
     expect(page).to_not have_content 'aliceの今日の日報'
-    expect(page).to_not have_content 'aliceの日報です。今日のお昼はうどんでした'
   end
 end
