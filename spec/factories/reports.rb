@@ -15,5 +15,14 @@ FactoryBot.define do
     factory :mention_report do
       title { 'メンションするレポート' }
     end
+
+    factory :lost_mentioned_report do
+      title { 'メンションされなくなるレポート' }
+      content { 'この日報はメンションされる日報になります。' }
+    end
+
+    factory :add_mentioned_report do
+      title { '後からメンションをするレポート' }
+    end
   end
 end
