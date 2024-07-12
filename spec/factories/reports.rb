@@ -4,7 +4,6 @@ FactoryBot.define do
   factory :report do
     title { '今日のレポート' }
     content { 'aliceの日報です、日報を書きます。それぞれの機能のテストのために書きました。' }
-    sequence(:id) { |n| n }
     association :user
 
     factory :mentioned_report do
