@@ -39,9 +39,7 @@ RSpec.describe Report, type: :model do
         expect do
           @mention_report = user.reports.create!(
             title: 'メンションするレポート',
-            content: <<~TEXT
-              "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します"
-            TEXT
+            content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します"
           ).to change { @mention_report.mentioning_reports }.from([]).to([mentioned_report])
         end
       end
