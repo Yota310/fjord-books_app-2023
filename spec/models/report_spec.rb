@@ -4,16 +4,17 @@ require 'rails_helper'
 
 RSpec.describe Report, type: :model do
   describe '#editable' do
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:another_user) { FactoryBot.create(:user) }
     context 'ユーザーがレポートを所有している' do
       it '編集できる' do
-        user = FactoryBot.create(:user)
         expect(FactoryBot.create(:report, user_id: user.id).editable?(user)).to be_truthy
       end
     end
 
     context 'ユーザーがレポートを所有していない' do
       it '編集できない' do
-        expect(FactoryBot.build(:report).editable?(FactoryBot.build(:another_user))).to be_falsey
+        expect(FactoryBot.build(:report).editable?(another_user)).to be_falsey
       end
     end
   end
