@@ -30,10 +30,11 @@ RSpec.describe Report, type: :model do
       let!(:user) { FactoryBot.create(:user) }
       let!(:mentioned_report) { FactoryBot.create(:report) }
       let!(:mention_report) { 
-        FactoryBot.create(:report, content: <<~TEXT)
+        content = <<~TEXT
           http://localhost:3000/reports/#{mentioned_report.id}
           私はmentionedレポートを言及します
         TEXT
+        FactoryBot.create(:report, content:)
       }
       it 'メンションを保存することができる' do
         expect do
@@ -45,27 +46,29 @@ RSpec.describe Report, type: :model do
       end
 
       it '自分自身をメンションしても保存されない' do
-        expect do
-          mention_report.update!(content: <<~TEXT)
+        content = <<~TEXT
             http://localhost:3000/reports/#{mention_report.id}
             私は自身を言及しますが保存されません
           TEXT
+        expect do
+          mention_report.update!(content:)
         end
           .to change { mention_report.reload.mentioning_reports }
           .from([mentioned_report]).to([])
       end
 
       it '二重でメンションしても１つのメンションになる' do
-        mention_report.update(content: <<~TEXT)
+        content = <<~TEXT
           http://localhost:3000/reports/#{mentioned_report.id}
           私は編集によってmentionedレポートを言及します
         TEXT
-
-        expect do
-          mention_report.update!(content: <<~TEXT)
+        mention_report.update(content:)
+        content = <<~TEXT
             http://localhost:3000/reports/#{mentioned_report.id}
             私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}
           TEXT
+        expect do
+          mention_report.update!(content:)
         end
           .to change { mention_report.reload.mentioning_reports }
           .from([mentioned_report]).to([mentioned_report])
@@ -77,18 +80,20 @@ RSpec.describe Report, type: :model do
       let!(:add_mentioned_report) { FactoryBot.create(:report, title: '後からメンションするレポート') }
       let!(:lost_mentioned_report) { FactoryBot.create(:report, title: 'メンションされなくなるレポート') }
       let!(:mention_report) { 
-        FactoryBot.create(:report, content: <<~TEXT)
+        content = <<~TEXT
           http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します。
           そしてlost_mention_reportも言及します。
           http://localhost:3000/reports/#{lost_mentioned_report.id}
         TEXT
+        FactoryBot.create(:report, content:)
       }
       it '編集によってメンションしているレポートが変わる' do
         expect do
-          mention_report.update!(content: <<~TEXT)
+          content = <<~TEXT
             更新することで私はmentionedレポートとadd_mentioned_reportを言及します。
             http://localhost:3000/reports/#{mentioned_report.id},http://localhost:3000/reports/#{add_mentioned_report.id}
           TEXT
+          mention_report.update!(content:)
         end
           .to change { mention_report.reload.mentioning_reports }
           .from([mentioned_report, lost_mentioned_report]).to([mentioned_report, add_mentioned_report])
