@@ -8,7 +8,7 @@ RSpec.describe 'Reports', type: :system do
     @report = @user.reports.create!(content: 'aliceの日報です。今日のお昼はうどんでした', title: 'aliceの今日の日報')
   end
 
-  it 'create report' do
+  it '日報を作成' do
     visit root_path
     fill_in 'Eメール', with: @user.email
     fill_in 'パスワード', with: '123456'
@@ -25,7 +25,7 @@ RSpec.describe 'Reports', type: :system do
     expect(page).to have_content 'ここで新しい日報を作成します。よろしくお願いいたします。'
   end
 
-  it 'edit report' do
+  it '日報を編集' do
     visit root_path
     fill_in 'Eメール', with: @user.email
     fill_in 'パスワード', with: '123456'
@@ -41,7 +41,7 @@ RSpec.describe 'Reports', type: :system do
     expect(page).to have_content '内容を編集'
   end
 
-  it 'delete report' do
+  it '日報を削除' do
     visit root_path
     fill_in 'Eメール', with: @user.email
     fill_in 'パスワード', with: '123456'
