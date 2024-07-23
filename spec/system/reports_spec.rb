@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Reports', type: :system do
+RSpec.describe '日報', type: :system do
   before do
     @user = FactoryBot.create(:user)
     @report = @user.reports.create!(content: 'aliceの日報です。今日のお昼はうどんでした', title: 'aliceの今日の日報')
