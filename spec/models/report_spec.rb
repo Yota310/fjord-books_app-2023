@@ -6,22 +6,24 @@ RSpec.describe Report, type: :model do
   describe '#editable' do
     let!(:user) { FactoryBot.create(:user) }
     let!(:another_user) { FactoryBot.create(:user) }
+    let!(:report){ FactoryBot.create(:report, user_id: user.id) }
     context 'ユーザーがレポートを所有している' do
       it '編集できる' do
-        expect(FactoryBot.create(:report, user_id: user.id).editable?(user)).to be_truthy
+        expect(report.editable?(user)).to be_truthy
       end
     end
 
     context 'ユーザーがレポートを所有していない' do
       it '編集できない' do
-        expect(FactoryBot.build(:report).editable?(another_user)).to be_falsey
+        expect(report.editable?(another_user)).to be_falsey
       end
     end
   end
 
   describe '#created_on' do
+    let!(:report){ FactoryBot.build(:report, created_at: '2024-06-24 14:33'.in_time_zone) }
     it '作られた日付を取得' do
-      expect(FactoryBot.build(:report, created_at: '2024-06-24 14:33'.in_time_zone).created_on).to eq Date.new(2024, 6, 24)
+      expect(report.created_on).to eq Date.new(2024, 6, 24)
     end
   end
 
@@ -38,9 +40,12 @@ RSpec.describe Report, type: :model do
       }
       it 'メンションを保存することができる' do
         expect do
+          content = <<~TEXT
+            "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します"
+          TEXT
           @mention_report = user.reports.create!(
             title: 'メンションするレポート',
-            content: "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します"
+            content:
           ).to change { @mention_report.mentioning_reports }.from([]).to([mentioned_report])
         end
       end
@@ -58,11 +63,6 @@ RSpec.describe Report, type: :model do
       end
 
       it '二重でメンションしても１つのメンションになる' do
-        content = <<~TEXT
-          http://localhost:3000/reports/#{mentioned_report.id}
-          私は編集によってmentionedレポートを言及します
-        TEXT
-        mention_report.update(content:)
         content = <<~TEXT
             http://localhost:3000/reports/#{mentioned_report.id}
             私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}
