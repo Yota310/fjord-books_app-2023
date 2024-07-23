@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
     context '名前が存在する時' do
       user = FactoryBot.build(:user, name: 'alice')
       it '名前を返す' do
-        expect(FactoryBot.build(:user).name_or_email).to eq 'alice'
+        expect(user.name_or_email).to eq 'alice'
       end
     end
   end
