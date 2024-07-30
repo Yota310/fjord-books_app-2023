@@ -46,10 +46,10 @@ RSpec.describe Report, type: :model do
           content = <<~TEXT
             "http://localhost:3000/reports/#{mentioned_report.id}私はmentionedレポートを言及します"
           TEXT
-          @mention_report = user.reports.create!(
+          mention_report = user.reports.create!(
             title: 'メンションするレポート',
             content:
-          ).to change { @mention_report.mentioning_reports }.from([]).to([mentioned_report])
+          ).to change { mention_report.mentioning_reports }.from([]).to([mentioned_report])
         end
       end
 
@@ -90,7 +90,7 @@ RSpec.describe Report, type: :model do
         TEXT
         FactoryBot.create(:report, content:)
       }
-      
+
       it '編集によってメンションしているレポートが変わる' do
         expect do
           content = <<~TEXT
