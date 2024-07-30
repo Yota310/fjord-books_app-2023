@@ -1,0 +1,57 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe '日報', type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+    @report = @user.reports.create!(content: 'aliceの日報です。今日のお昼はうどんでした', title: 'aliceの今日の日報')
+  end
+
+  it '日報を作成' do
+    visit root_path
+    fill_in 'Eメール', with: @user.email
+    fill_in 'パスワード', with: '123456'
+    click_on 'ログイン'
+    expect(page).to have_content 'ログインしました'
+    visit reports_path
+    click_on '日報の新規作成'
+    fill_in 'タイトル', with: '日報を新規作成してみた'
+    fill_in '内容', with: 'ここで新しい日報を作成します。よろしくお願いいたします。'
+    click_on '登録する'
+
+    expect(page).to have_content '日報が作成されました。'
+    expect(page).to have_content '日報を新規作成してみた'
+    expect(page).to have_content 'ここで新しい日報を作成します。よろしくお願いいたします。'
+  end
+
+  it '日報を編集' do
+    visit root_path
+    fill_in 'Eメール', with: @user.email
+    fill_in 'パスワード', with: '123456'
+    click_on 'ログイン'
+    expect(page).to have_content 'ログインしました'
+    visit report_path(@report)
+    click_on 'この日報を編集'
+    fill_in 'タイトル', with: 'タイトルを編集した'
+    fill_in '内容', with: '内容を編集'
+    click_on '更新する'
+    expect(page).to have_content '日報が更新されました。'
+    expect(page).to have_content 'タイトルを編集した'
+    expect(page).to have_content '内容を編集'
+  end
+
+  it '日報を削除' do
+    visit root_path
+    fill_in 'Eメール', with: @user.email
+    fill_in 'パスワード', with: '123456'
+    click_on 'ログイン'
+    expect(page).to have_content 'ログインしました'
+    visit reports_path
+    expect(page).to have_content 'aliceの今日の日報'
+    visit report_path(@report)
+    click_on 'この日報を削除'
+    expect(page).to have_content '日報が削除されました。'
+    expect(page).to_not have_content 'aliceの今日の日報'
+  end
+end
