@@ -70,11 +70,7 @@ RSpec.describe Report, type: :model do
             http://localhost:3000/reports/#{mentioned_report.id}
             私は重複してmentionedレポートを言及しますhttp://localhost:3000/reports/#{mentioned_report.id}
           TEXT
-        expect do
-          mention_report.update!(content:)
-        end
-          .to change { mention_report.reload.mentioning_reports }
-          .from([mentioned_report]).to([mentioned_report])
+        expect { mention_report.update!(content:) }.to change { mention_report.reload.mentioning_reports }.from([mentioned_report]).to([mentioned_report])
       end
     end
 
