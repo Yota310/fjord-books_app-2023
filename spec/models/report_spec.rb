@@ -7,6 +7,7 @@ RSpec.describe Report, type: :model do
     let!(:user) { FactoryBot.create(:user) }
     let!(:another_user) { FactoryBot.create(:user) }
     let!(:report){ FactoryBot.create(:report, user_id: user.id) }
+
     context 'ユーザーがレポートを所有している' do
       it '編集できる' do
         expect(report.editable?(user)).to be_truthy
@@ -22,6 +23,7 @@ RSpec.describe Report, type: :model do
 
   describe '#created_on' do
     let!(:report){ FactoryBot.build(:report, created_at: '2024-06-24 14:33'.in_time_zone) }
+
     it '作られた日付を取得' do
       expect(report.created_on).to eq Date.new(2024, 6, 24)
     end
@@ -38,6 +40,7 @@ RSpec.describe Report, type: :model do
         TEXT
         FactoryBot.create(:report, content:)
       }
+
       it 'メンションを保存することができる' do
         expect do
           content = <<~TEXT
@@ -57,9 +60,9 @@ RSpec.describe Report, type: :model do
           TEXT
         expect do
           mention_report.update!(content:)
-        end
           .to change { mention_report.reload.mentioning_reports }
           .from([mentioned_report]).to([])
+        end
       end
 
       it '二重でメンションしても１つのメンションになる' do
@@ -87,6 +90,7 @@ RSpec.describe Report, type: :model do
         TEXT
         FactoryBot.create(:report, content:)
       }
+      
       it '編集によってメンションしているレポートが変わる' do
         expect do
           content = <<~TEXT
